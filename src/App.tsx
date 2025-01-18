@@ -96,7 +96,7 @@ function App() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 font-display">
-                    Enhancing Psychiatric Care Through AI-Driven Automation
+                    Empowering Mental Health Professionals with AI-Driven Solutions
                   </h1>
                   <p className="text-xl text-gray-600 mb-8">
                     Innovative AI solutions tailored for mental health professionals to improve patient outcomes and operational efficiency.
