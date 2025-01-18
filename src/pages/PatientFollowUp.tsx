@@ -64,82 +64,57 @@ export default function PatientFollowUp() {
             Key Benefits
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow duration-300 animate-on-scroll floating">
-              <div className="mb-6 animate-on-scroll-icon">
-                <Pill className="h-12 w-12 text-blue-600" />
+            {[
+              {
+                icon: <MessageSquare className="h-12 w-12 text-blue-600" />,
+                title: "Automated Communication",
+                description: "Intelligent, timely communication with patients through AI-powered messaging system.",
+                benefits: [
+                  "Personalized follow-up messages",
+                  "Appointment reminders",
+                  "Treatment plan updates"
+                ]
+              },
+              {
+                icon: <ClipboardCheck className="h-12 w-12 text-blue-600" />,
+                title: "Treatment Adherence",
+                description: "Improve patient compliance with treatment plans through regular monitoring and support.",
+                benefits: [
+                  "Medication reminders",
+                  "Progress tracking",
+                  "Behavioral support"
+                ]
+              },
+              {
+                icon: <Activity className="h-12 w-12 text-blue-600" />,
+                title: "Outcome Monitoring",
+                description: "Track and analyze patient progress with advanced analytics and reporting.",
+                benefits: [
+                  "Real-time progress tracking",
+                  "Early intervention alerts",
+                  "Outcome analysis"
+                ]
+              }
+            ].map((benefit, index) => (
+              <div 
+                key={index}
+                className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="mb-6">
+                  {benefit.icon}
+                </div>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{benefit.title}</h3>
+                <p className="text-gray-600 mb-6">{benefit.description}</p>
+                <ul className="space-y-3">
+                  {benefit.benefits.map((item, idx) => (
+                    <li key={idx} className="flex items-center text-gray-600">
+                      <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900">Improved Patient Adherence</h3>
-              <p className="text-gray-600 mb-6">
-                Leverage our intelligent automation system to keep patients engaged and 
-                committed to their treatment plans through personalized communication 
-                and timely reminders.
-              </p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Automated reminders and personalized messaging
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Treatment plans and refill tracking
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Consistent follow-through support
-                </li>
-              </ul>
-            </div>
-            
-            <div className="p-8 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow duration-300 animate-on-scroll floating" style={{ animationDelay: '150ms' }}>
-              <div className="mb-6 animate-on-scroll-icon">
-                <Heart className="h-12 w-12 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900">Enhanced Patient Satisfaction</h3>
-              <p className="text-gray-600 mb-6">
-                Create a supportive, patient-centered experience through timely communications 
-                and meaningful interactions that strengthen the connection between patients 
-                and your practice.
-              </p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Timely, relevant follow-up communications
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Supportive, patient-centered experience
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Stronger practice relationships
-                </li>
-              </ul>
-            </div>
-            
-            <div className="p-8 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow duration-300 animate-on-scroll floating" style={{ animationDelay: '300ms' }}>
-              <div className="mb-6 animate-on-scroll-icon">
-                <Activity className="h-12 w-12 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900">Better Health Outcomes</h3>
-              <p className="text-gray-600 mb-6">
-                Enhance patient recovery and long-term wellness through early detection of potential 
-                health issues and prompt medical interventions, facilitated by our AI-driven solutions.
-              </p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Early detection of potential health issues
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Prompt medical interventions
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <ChevronRight className="h-4 w-4 text-blue-600 mr-2 flex-shrink-0" />
-                  Improved recovery and wellness support
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
