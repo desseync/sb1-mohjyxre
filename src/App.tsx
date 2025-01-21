@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Brain, Activity, UserCheck, ChevronRight, Mail, Phone, MapPin, Globe, Workflow, Users } from 'lucide-react';
+import { Brain, Activity, ChevronRight, MapPin, Workflow } from 'lucide-react';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import AutomationBenefits from './pages/AutomationBenefits';
-import PatientFollowUp from './pages/PatientFollowUp';
 import AIPlatformIntegration from './pages/AIPlatformIntegration';
-import WebsiteServices from './pages/WebsiteServices';
 
 function useIntersectionObserver(callback: IntersectionObserverCallback) {
   const observer = useRef<IntersectionObserver | null>(null);
@@ -153,28 +151,12 @@ function App() {
                     link: "/automation-benefits"
                   },
                   {
-                    icon: <Users className="h-12 w-12 text-blue-600 animated-icon" />,
-                    title: "Patient Follow-Up Services",
-                    description: "Elevate patient care with our sophisticated AI-powered follow-up system that maintains personalized, timely communication while reducing staff workload.",
-                    benefits: ["Improved patient adherence", "Higher satisfaction rates", "Better outcomes"],
-                    cta: "Discover Our Patient Follow-Up Solutions",
-                    link: "/patient-follow-up"
-                  },
-                  {
                     icon: <Brain className="h-12 w-12 text-blue-600 animated-icon" />,
                     title: "AI Platform Integration",
                     description: "Modernize your practice with cutting-edge AI solutions that integrate seamlessly with your existing systems, enhancing every aspect of your operations.",
                     benefits: ["Seamless compatibility", "Enhanced data analysis", "Optimized workflow"],
                     cta: "Find Out About Our Integration Services",
                     link: "/ai-platform-integration"
-                  },
-                  {
-                    icon: <Globe className="h-12 w-12 text-blue-600 animated-icon" />,
-                    title: "Website Building Services",
-                    description: "Create an engaging digital presence with our AI-enhanced website solutions, designed specifically for healthcare providers to attract and serve patients better.",
-                    benefits: ["Improved online presence", "Enhanced patient engagement", "Better accessibility"],
-                    cta: "Explore Our Website Development Services",
-                    link: "/website-services"
                   }
                 ].map((service, index) => (
                   <div 
@@ -220,20 +202,17 @@ function App() {
           <section id="contact" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4">
               <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 font-display">Get in Touch</h2>
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <Mail className="h-6 w-6 text-blue-600" />
-                    <span className="text-gray-600">contact@frequencyai.com</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <Phone className="h-6 w-6 text-blue-600" />
-                    <span className="text-gray-600">+1 (555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <MapPin className="h-6 w-6 text-blue-600" />
-                    <span className="text-gray-600">123 Innovation Drive, Silicon Valley, CA</span>
-                  </div>
+              <div className="flex flex-col items-center justify-center space-y-6">
+                <button 
+                  className="animated-button bg-blue-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-blue-700 transition w-full max-w-md flex items-center justify-center space-x-2"
+                  onClick={() => window.location.href = 'mailto:contact@frequencyai.com'}
+                >
+                  <span>Click Here</span>
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+                <div className="flex items-center justify-center space-x-4">
+                  <MapPin className="h-6 w-6 text-blue-600" />
+                  <span className="text-gray-600">Nashville, TN</span>
                 </div>
               </div>
             </div>
@@ -262,7 +241,6 @@ function App() {
                   <h3 className="font-semibold mb-4">Services</h3>
                   <ul className="space-y-2">
                     <li className="text-gray-400">AI Diagnostics</li>
-                    <li className="text-gray-400">Patient Monitoring</li>
                     <li className="text-gray-400">Treatment Planning</li>
                     <li className="text-gray-400">Practice Management</li>
                   </ul>
@@ -285,9 +263,7 @@ function App() {
         </div>
       } />
       <Route path="/automation-benefits" element={<AutomationBenefits />} />
-      <Route path="/patient-follow-up" element={<PatientFollowUp />} />
       <Route path="/ai-platform-integration" element={<AIPlatformIntegration />} />
-      <Route path="/website-services" element={<WebsiteServices />} />
     </Routes>
   );
 }
