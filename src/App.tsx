@@ -5,6 +5,7 @@ import { useScrollToTop } from './hooks/useScrollToTop';
 import AutomationBenefits from './pages/AutomationBenefits';
 import AIPlatformIntegration from './pages/AIPlatformIntegration';
 import FrequencyAI from './pages/FrequencyAI';
+import Contact from './pages/Contact';
 
 function useIntersectionObserver(callback: IntersectionObserverCallback) {
   const observer = useRef<IntersectionObserver | null>(null);
@@ -71,6 +72,7 @@ function App() {
       <Route path="/" element={<FrequencyAI />} />
       <Route path="/automation-benefits" element={<AutomationBenefits />} />
       <Route path="/ai-platform-integration" element={<AIPlatformIntegration />} />
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   );
 }
