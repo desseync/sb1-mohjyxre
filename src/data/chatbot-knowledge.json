@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "purpose": "Customer service and sales assistance",
+    "tone": "Professional, friendly, and helpful",
+    "style": "Clear, concise responses with a focus on solving user needs",
+    "outOfScope": "Direct users to contact support for complex technical issues, pricing negotiations, or sensitive data matters"
+  },
+
+  "generalInfo": {
+    "company": {
+      "name": "Frequency AI",
+      "description": "AI-powered practice management solution for mental health professionals",
+      "location": "Nashville, TN",
+      "contact": {
+        "email": "contact@frequencyai.com",
+        "support": {
+          "hours": "Monday - Friday: 9:00 AM - 6:00 PM EST",
+          "response_time": "Within 2 business hours"
+        }
+      }
+    }
+  },
+
+  "products": {
+    "plans": {
+      "basic": {
+        "name": "Basic Plan",
+        "price": "$199/month",
+        "features": [
+          "Virtual Assistant for automated appointment scheduling and management",
+          "Two-way SMS reminders with confirmation and rescheduling options",
+          "Seamless Google Calendar integration for real-time availability"
+        ]
+      },
+      "professional": {
+        "name": "Professional Plan",
+        "price": "$399/month",
+        "features": [
+          "All Basic Plan features",
+          "Automated rescheduling workflow with customer self-service options",
+          "Customizable reporting dashboard with exportable data",
+          "Automated post-session follow-up communications",
+          "One tailored workflow design to match your business processes"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise Plan",
+        "price": "Custom pricing",
+        "features": {
+          "scheduling": [
+            "Virtual Assistant for automated appointment management",
+            "Two-way SMS reminders with instant confirmation",
+            "Self-service rescheduling portal",
+            "Real-time Google Calendar sync",
+            "Multi-location support"
+          ],
+          "communication": [
+            "Automated post-session follow-ups",
+            "Custom communication workflows",
+            "Multi-channel notifications",
+            "HIPAA-compliant messaging",
+            "Bulk communication tools"
+          ],
+          "analytics": [
+            "Customizable reporting dashboard",
+            "Advanced data visualization",
+            "Custom metrics tracking",
+            "Exportable reports",
+            "Predictive analytics"
+          ],
+          "support": [
+            "Dedicated account manager",
+            "24/7 priority assistance",
+            "Custom implementation support",
+            "Quarterly business reviews",
+            "Training and onboarding"
+          ]
+        }
+      }
+    }
+  },
+
+  "faqs": [
+    {
+      "question": "What is Frequency AI?",
+      "answer": "Frequency AI is an AI-powered practice management solution designed specifically for mental health professionals. We help streamline scheduling, automate communications, and improve practice efficiency."
+    },
+    {
+      "question": "How does the virtual assistant work?",
+      "answer": "Our virtual assistant automates appointment scheduling and management by handling booking requests, sending confirmations, and managing rescheduling through an AI-powered system that integrates with your calendar."
+    },
+    {
+      "question": "Is the system HIPAA compliant?",
+      "answer": "Yes, all our communications and data storage systems are fully HIPAA compliant to ensure the security and privacy of patient information."
+    },
+    {
+      "question": "How long does implementation take?",
+      "answer": "Implementation typically takes 2-4 weeks, including initial consultation, setup, configuration, and staff training."
+    },
+    {
+      "question": "Can I integrate with my existing systems?",
+      "answer": "Yes, we offer seamless integration with common tools like Google Calendar and various EHR systems. Custom integrations are available for Professional and Enterprise plans."
+    }
+  ],
+
+  "commonQueries": {
+    "pricing": {
+      "query": "How much does it cost?",
+      "response": "We offer three plans: Basic ($199/month), Professional ($399/month), and Enterprise (custom pricing). Each plan includes different features to suit your practice's needs. Would you like me to explain the features of each plan?"
+    },
+    "demo": {
+      "query": "Can I see a demo?",
+      "response": "Yes! We'd be happy to schedule a demo of our platform. Please click the 'Schedule Demo' button at the top of the page or provide your contact information, and our team will reach out to arrange a convenient time."
+    },
+    "implementation": {
+      "query": "How do you implement the system?",
+      "response": "Our implementation process has four steps: 1) Initial consultation to assess your needs, 2) Technical setup and system integration, 3) Staff training, and 4) Go-live with ongoing support. Would you like more details about any of these steps?"
+    }
+  },
+
+  "conversationFlows": {
+    "newCustomer": {
+      "greeting": "Hello! Welcome to Frequency AI. How can I help you today?",
+      "followUps": [
+        "Would you like to learn about our features?",
+        "Would you like to see our pricing plans?",
+        "Would you like to schedule a demo?"
+      ]
+    },
+    "pricingInquiry": {
+      "initial": "We have several plans to choose from. What size is your practice?",
+      "branches": {
+        "small": "Our Basic plan at $199/month might be perfect for you. It includes our core scheduling and communication features.",
+        "medium": "Our Professional plan at $399/month offers additional features like custom workflows and advanced analytics.",
+        "large": "Our Enterprise plan would be ideal for your needs. It includes custom features and dedicated support."
+      }
+    }
+  },
+
+  "metrics": {
+    "benefits": {
+      "noShows": "50% reduction in no-shows",
+      "revenue": "30% increase in revenue",
+      "timeSaved": "75% time saved on administrative tasks"
+    }
+  }
+}
