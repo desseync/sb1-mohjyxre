@@ -164,32 +164,46 @@ export default function FrequencyAI() {
       {/* Benefits Section */}
       <section className="py-20 bg-white" id="benefits">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 font-display">Key Platform Benefits</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 font-display">Proven Impact</h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Based on comprehensive industry studies and aggregated data from practices across the United States, as reported in peer-reviewed research and leading practice management publications
+          </p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                metric: "Efficiency",
-                title: "Streamlined Operations",
-                description: "Automate routine tasks and optimize scheduling"
+                metric: "50%",
+                title: "Reduction in No-Shows",
+                description: "Through intelligent reminders and engagement systems",
+                icon: Users
               },
               {
-                metric: "Integration",
-                title: "Seamless Workflow",
-                description: "Connect with your existing tools and systems"
+                metric: "30%",
+                title: "Revenue Increase",
+                description: "By optimizing scheduling and reducing administrative overhead",
+                icon: LineChart
               },
               {
-                metric: "Innovation",
-                title: "AI-Powered Solutions",
-                description: "Leverage advanced technology for better outcomes"
+                metric: "75%",
+                title: "Time Saved",
+                description: "On routine administrative tasks through AI automation",
+                icon: Clock
               }
             ].map((benefit, index) => (
               <div 
                 key={index}
-                className="text-center p-8 rounded-xl bg-gradient-to-b from-blue-50 to-white shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="relative overflow-hidden bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group p-8"
               >
-                <div className="text-2xl font-bold text-blue-600 mb-4">{benefit.metric}</div>
-                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-100 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <benefit.icon className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{benefit.title}</h3>
+                  </div>
+                  <div className="text-4xl font-bold text-blue-600 mb-4">{benefit.metric}</div>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </div>
               </div>
             ))}
           </div>

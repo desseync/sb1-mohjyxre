@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitContactForm } from '../lib/api';
 
 interface FormData {
   firstName: string;
@@ -26,53 +27,6 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    // First Name validation
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    }
-
-    // Last Name validation
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Phone validation
-    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = 'Please enter phone in format: XXX-XXX-XXXX';
-    }
-
-    // Website validation (optional)
-    if (formData.website.trim() && !formData.website.match(/^https?:\/\/.+/)) {
-      newErrors.website = 'Website must start with http:// or https://';
-    }
-
-    // Message validation
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    } else if (formData.message.length > 500) {
-      newErrors.message = 'Message cannot exceed 500 characters';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
   const formatPhoneNumber = (value: string): string => {
     const numbers = value.replace(/\D/g, '');
@@ -107,25 +61,25 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
     setIsSubmitting(true);
+    setErrors({});
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitSuccess(true);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        website: '',
-        message: ''
-      });
+      const response = await submitContactForm(formData);
+
+      if (response.success) {
+        setSubmitSuccess(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          website: '',
+          message: ''
+        });
+      } else {
+        setErrors(response.errors || { submit: response.message });
+      }
     } catch (error) {
       setErrors({
         submit: 'Failed to submit form. Please try again.'
