@@ -17,11 +17,8 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 2000,
-    // Add manifest for better caching
     manifest: true,
-    // Optimize CSS
     cssCodeSplit: true,
-    // Minify output
     minify: 'terser',
     terserOptions: {
       compress: {
@@ -29,10 +26,5 @@ export default defineConfig({
         drop_debugger: true
       }
     }
-  },
-  server: {
-    port: 5173,
-    strictPort: true,
-    host: true
   }
 });
