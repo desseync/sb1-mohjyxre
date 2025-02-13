@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Explicitly set base URL
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -16,7 +16,19 @@ export default defineConfig({
         }
       }
     },
-    chunkSizeWarningLimit: 2000
+    chunkSizeWarningLimit: 2000,
+    // Add manifest for better caching
+    manifest: true,
+    // Optimize CSS
+    cssCodeSplit: true,
+    // Minify output
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   },
   server: {
     port: 5173,
