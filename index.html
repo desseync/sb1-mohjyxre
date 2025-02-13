@@ -7,48 +7,33 @@
     <title>Frequency AI</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <base href="/">
     <script>
-      // Handle 404s for SPA
+      // Ensure proper path handling for SPA
       (function() {
-        if (window.location.pathname !== '/' && !window.location.pathname.endsWith('.html')) {
-          window.history.replaceState(null, '', '/');
+        const path = window.location.pathname;
+        if (path !== '/' && !path.includes('.')) {
+          window.history.replaceState({}, '', '/');
         }
       })();
     </script>
   </head>
   <body>
     <div id="root"></div>
-    <div style="width: 0; height: 0;" id="VG_OVERLAY_CONTAINER">
-      <!-- Here is where TIXAE Agents renders the widget. -->
-      <!-- Set render to 'full-width' then adjust the width and height to 500px (for example) to render the chatbot itself without the popup. -->
-    </div>
+    <div style="width: 0; height: 0;" id="VG_OVERLAY_CONTAINER"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
       (function() {
           window.VG_CONFIG = {
-              ID: "v2uac92uxyfabkrc", // YOUR AGENT ID
-              region: 'na', // YOUR ACCOUNT REGION 
-              render: 'bottom-right', // can be 'full-width' or 'bottom-left' or 'bottom-right'
+              ID: "v2uac92uxyfabkrc",
+              region: 'na',
+              render: 'bottom-right',
               stylesheets: [
-                  // Base TIXAE Agents CSS
                   "https://vg-bunny-cdn.b-cdn.net/vg_live_build/styles.css",
-                  // Add your custom css stylesheets, Can also add relative URL ('/public/your-file.css)
               ],
-              // THIS IS SUPPOSED TO BE CHANGED OR REMOVED.
-              // user: {
-              //     name: 'John Doe', // User's name
-              //     email: 'johndoe@gmail.com', // User's email
-              //     phone: '+1234567890', // User's phone number
-              // }
-              // Optional user data -- end
-              // **
-              // userID: 'USER_ID', // If you want to use your own user_id
-              // autostart: true, // Whether to autostart the chatbot with the proactive message
           }
           var VG_SCRIPT = document.createElement("script");
           VG_SCRIPT.src = "https://vg-bunny-cdn.b-cdn.net/vg_live_build/vg_bundle.js";
-          VG_SCRIPT.defer = true; // Remove 'defer' if you want widget to load faster (Will affect website loading)
+          VG_SCRIPT.defer = true;
           document.body.appendChild(VG_SCRIPT);
       })()
     </script>

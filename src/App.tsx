@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Brain, Activity, ChevronRight, MapPin, Workflow } from 'lucide-react';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import AutomationBenefits from './pages/AutomationBenefits';
@@ -67,12 +67,14 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<FrequencyAI />} />
-      <Route path="/automation-benefits" element={<AutomationBenefits />} />
-      <Route path="/ai-platform-integration" element={<AIPlatformIntegration />} />
-      <Route path="*" element={<FrequencyAI />} /> {/* Add catch-all route */}
-    </Routes>
+    <div className="app-container">
+      <Routes>
+        <Route path="/" element={<FrequencyAI />} />
+        <Route path="/automation-benefits" element={<AutomationBenefits />} />
+        <Route path="/ai-platform-integration" element={<AIPlatformIntegration />} />
+        <Route path="*" element={<FrequencyAI />} />
+      </Routes>
+    </div>
   );
 }
 

@@ -3,8 +3,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: '',
   build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -13,7 +16,11 @@ export default defineConfig({
         }
       }
     },
-    chunkSizeWarningLimit: 2000,
-    sourcemap: true
+    chunkSizeWarningLimit: 2000
+  },
+  server: {
+    port: 5173,
+    strictPort: true,
+    host: true
   }
 });
