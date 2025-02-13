@@ -22,9 +22,14 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // Changed to false for debugging
         drop_debugger: true
       }
     }
+  },
+  server: {
+    host: true,
+    strictPort: true,
+    port: 5173
   }
 });

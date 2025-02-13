@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { submitContactForm } from '../lib/api';
+import { isSupabaseConfigured } from '../lib/supabase';
 
 interface FormData {
   firstName: string;
@@ -50,7 +51,6 @@ export default function ContactForm() {
       }));
     }
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -63,6 +63,14 @@ export default function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
     setErrors({});
+
+    if (!isSupabaseConfigured()) {
+      setErrors({
+        submit: 'Contact form is temporarily unavailable. Please try again later or contact us directly.'
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await submitContactForm(formData);

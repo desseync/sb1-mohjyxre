@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, isSupabaseConfigured } from './supabase';
 import { validateEmail, validatePhone, validateWebsite, sanitizeInput } from './validation';
 
 interface ContactFormData {
@@ -18,6 +18,15 @@ interface SubmissionResponse {
 
 export const submitContactForm = async (formData: ContactFormData): Promise<SubmissionResponse> => {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured()) {
+      return {
+        success: false,
+        message: 'Contact form is temporarily unavailable. Please try again later.',
+        errors: { submit: 'Service configuration error' }
+      };
+    }
+
     // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.message) {
       return {

@@ -16,7 +16,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https: data:;"
+    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://*.b-cdn.net; style-src 'self' 'unsafe-inline' https: https://*.b-cdn.net; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https: wss:;"
 
 [[headers]]
   for = "/assets/*"
