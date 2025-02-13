@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { submitContactForm } from '../lib/api';
 import { isSupabaseConfigured } from '../lib/supabase';
 
@@ -28,6 +28,22 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  useEffect(() => {
+    // Handle form data persistence
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (Object.values(formData).some(value => value)) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [formData]);
 
   const formatPhoneNumber = (value: string): string => {
     const numbers = value.replace(/\D/g, '');
@@ -116,12 +132,14 @@ export default function ContactForm() {
                 type="text"
                 id="firstName"
                 name="firstName"
+                autoComplete="given-name"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ${
                   errors.firstName ? 'border-red-500' : 'border-gray-300'
                 }`}
                 aria-invalid={errors.firstName ? 'true' : 'false'}
+                required
               />
               {errors.firstName && (
                 <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
@@ -136,12 +154,14 @@ export default function ContactForm() {
                 type="text"
                 id="lastName"
                 name="lastName"
+                autoComplete="family-name"
                 value={formData.lastName}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ${
                   errors.lastName ? 'border-red-500' : 'border-gray-300'
                 }`}
                 aria-invalid={errors.lastName ? 'true' : 'false'}
+                required
               />
               {errors.lastName && (
                 <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
@@ -157,12 +177,14 @@ export default function ContactForm() {
               type="email"
               id="email"
               name="email"
+              autoComplete="email"
               value={formData.email}
               onChange={handleInputChange}
               className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
               aria-invalid={errors.email ? 'true' : 'false'}
+              required
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -177,6 +199,7 @@ export default function ContactForm() {
               type="tel"
               id="phone"
               name="phone"
+              autoComplete="tel"
               value={formData.phone}
               onChange={handleInputChange}
               placeholder="XXX-XXX-XXXX"
@@ -185,6 +208,7 @@ export default function ContactForm() {
                 errors.phone ? 'border-red-500' : 'border-gray-300'
               }`}
               aria-invalid={errors.phone ? 'true' : 'false'}
+              required
             />
             {errors.phone && (
               <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
@@ -199,6 +223,7 @@ export default function ContactForm() {
               type="url"
               id="website"
               name="website"
+              autoComplete="url"
               value={formData.website}
               onChange={handleInputChange}
               placeholder="https://"
@@ -226,6 +251,7 @@ export default function ContactForm() {
                 errors.message ? 'border-red-500' : 'border-gray-300'
               }`}
               aria-invalid={errors.message ? 'true' : 'false'}
+              required
             />
             <div className="mt-1 flex justify-between">
               {errors.message ? (
