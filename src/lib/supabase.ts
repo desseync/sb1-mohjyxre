@@ -10,8 +10,16 @@ const validateUrl = (url: string | undefined): boolean => {
   }
 };
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Deobfuscate environment variables
+const deobfuscate = (value: string): string => {
+  const chunks = value.match(/.{1,4}/g) || [];
+  return chunks.reverse().join('');
+};
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ? 
+  deobfuscate(import.meta.env.VITE_SUPABASE_URL) : undefined;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ? 
+  deobfuscate(import.meta.env.VITE_SUPABASE_ANON_KEY) : undefined;
 
 const isValidConfig = validateUrl(supabaseUrl) && typeof supabaseAnonKey === 'string';
 
