@@ -12,7 +12,7 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <BrowserRouter basename="/">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
