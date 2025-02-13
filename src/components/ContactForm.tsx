@@ -30,18 +30,31 @@ export default function ContactForm() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
-    // Handle form data persistence
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+    // Handle form data persistence using pagehide event
+    const handlePageHide = (e: PageTransitionEvent) => {
       if (Object.values(formData).some(value => value)) {
-        e.preventDefault();
-        e.returnValue = '';
+        // Store form data in sessionStorage
+        sessionStorage.setItem('contactFormData', JSON.stringify(formData));
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    // Restore form data if it exists
+    const savedFormData = sessionStorage.getItem('contactFormData');
+    if (savedFormData) {
+      try {
+        const parsedData = JSON.parse(savedFormData);
+        setFormData(parsedData);
+        // Clear the stored data after restoring
+        sessionStorage.removeItem('contactFormData');
+      } catch (error) {
+        console.error('Error restoring form data:', error);
+      }
+    }
+
+    window.addEventListener('pagehide', handlePageHide);
     
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', handlePageHide);
     };
   }, [formData]);
 
@@ -101,6 +114,8 @@ export default function ContactForm() {
           website: '',
           message: ''
         });
+        // Clear stored form data on successful submission
+        sessionStorage.removeItem('contactFormData');
       } else {
         setErrors(response.errors || { submit: response.message });
       }
@@ -255,7 +270,7 @@ export default function ContactForm() {
             />
             <div className="mt-1 flex justify-between">
               {errors.message ? (
-                <p className="text-sm text-red-600">{errors.message}</p>
+                <p className="mt-1 text-sm text-red-600">{errors.message}</p>
               ) : (
                 <p className="text-sm text-gray-500">
                   {formData.message.length}/500 characters
