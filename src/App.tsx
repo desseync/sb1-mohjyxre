@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Brain, Activity, ChevronRight, MapPin, Workflow } from 'lucide-react';
+import { Routes, Route } from 'react-router-dom';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import AutomationBenefits from './pages/AutomationBenefits';
 import AIPlatformIntegration from './pages/AIPlatformIntegration';
@@ -67,7 +66,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="app-container bg-gradient-to-b from-blue-50 to-white">
       <Routes>
         <Route path="/" element={<FrequencyAI />} />
         <Route path="/automation-benefits" element={<AutomationBenefits />} />
